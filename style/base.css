@@ -1,0 +1,17 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+body{
+    width: 99vw;
+    height: 99vh;
+    border:6px ridge #98d3ce;
+    background-color: #111;
+    color:#e0ce2d;
+    margin:auto;
+    padding:12px;
+}
+body main{
+    /* min-height: 95vh; */
+}
