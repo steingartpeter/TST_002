@@ -8,6 +8,7 @@ export default class Droid {
   #xp;
   #name;
   #bio;
+  #plyFaceImg;
 
   constructor(prmObj = {}) {
     // Using the nullish coalescing operator (??) for cleaner defaults.
@@ -20,17 +21,20 @@ export default class Droid {
     // Use the setters during construction to ensure validation logic is applied.
     this.lvl = prmObj.lvl ?? 0;
     this.xp = prmObj.xp ?? 0;
+    this.plyFaceImg =
+      prmObj.plyFaceImg ?? "plyr_fc_001.jpg";
 
     this.helper = new GNRL_HLPR();
-    this.#bio = '';
+    this.bio = "";
+    console.log(this);
   }
 
   #gnrtRndmName() {
     // genrate a random name
     let rndmNm = "";
-    const letters =CONSTS.letters;
+    const letters = CONSTS.letters;
     const numbers = CONSTS.numbers;
-    
+
     for (let ix1 = 0; ix1 < 3; ix1++) {
       for (let ix2 = 0; ix2 < 3; ix2++) {
         if (ix1 % 2 === 0) {
@@ -83,5 +87,25 @@ export default class Droid {
       return;
     }
     this.#name = value;
+  }
+
+  get bio() {
+    return this.#bio;
+  }
+
+  set bio(addendum = "") {
+    this.#bio += addendum;
+  }
+
+  get plyFaceImg() {
+    return this.#plyFaceImg;
+  }
+
+  set plyFaceImg(imgNm = "") {
+    if(imgNm == undefined || imgNm == ""){
+      console.log('plyr.js #106:  MISING player-portrait filename');
+      return;
+    }
+    this.#plyFaceImg = CONSTS.img_paths.plyr_prtrts + imgNm;
   }
 }

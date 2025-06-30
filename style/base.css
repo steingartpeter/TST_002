@@ -1,17 +1,210 @@
-*{
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
-body{
-    width: 99vw;
-    height: 99vh;
-    border:6px ridge #98d3ce;
-    background-color: #111;
-    color:#e0ce2d;
-    margin:auto;
-    padding:12px;
+body {
+  width: 99vw;
+  height: 99vh;
+  border: 6px ridge #98d3ce;
+  background-color: #111;
+  color: #e0ce2d;
+  margin: auto;
+  padding: 12px;
 }
-body main{
-    /* min-height: 95vh; */
+body main {
+  /* min-height: 95vh; */
+}
+
+.loc-backdrop {
+  z-index: 9999;
+  opacity: 0.6;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+}
+
+.usr-card {
+  height: 520px;
+  width: 320px;
+  background: radial-gradient(circle,rgba(20, 61, 79, 1) 4%, rgba(100, 162, 209, 1) 100%);
+  border: 3px solid #cdcdcd;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  animation: growAndFadeIn 1.1s;
+  overflow: auto;
+}
+.usr-crd-hdr{
+    width: 95%;
+    height: 33%;
+    background-color: #8899ff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 3px;
+}
+.usr-crd-hdr .portrait img{
+    width:140px;
+    height: 140px;
+    margin: auto;
+}
+.usr-crd-hdr .name{
+    text-align: left;
+    padding: 3px;
+    width:100%;
+    text-align: left;
+    color:#222;
+}
+.usr-crd-body{
+    width: 33%;
+    height: 33%;
+    background-color: #FF9988;
+}
+.usr-crd-ftr{
+    width: 33%;
+    height: 33%;
+    background-color: #88FF88;
+}
+
+@keyframes growAndFadeIn {
+  from {
+    transform: scale(0.3);
+    opacity: 0.1;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes shrinkAndFadeIn {
+  from {
+    transform: scale(1.6);
+    opacity: 0.1;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-200px);
+    opacity: 0.1;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(200px);
+    opacity: 0.1;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes slideInFromBottom {
+  from {
+    transform: translateY(100px);
+    opacity: 0.1;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes slideInFromTop {
+  from {
+    transform: translateY(-200px);
+    opacity: 0.1;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes bounceInFromLeft {
+  0% {
+    transform: translateX(-200px);
+    opacity: 0;
+  }
+  60% {
+    transform: translateX(30px);
+    opacity: 1;
+  }
+  75% {
+    transform: translateX(-15px);
+  }
+  85% {
+    transform: translateX(8px);
+  }
+  95% {
+    transform: translateX(-4px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes bounceInFromRight {
+  0% {
+    transform: translateX(200px);
+    opacity: 0;
+  }
+  60% {
+    transform: translateX(-30px);
+    opacity: 1;
+  }
+  75% {
+    transform: translateX(15px);
+  }
+  85% {
+    transform: translateX(-8px);
+  }
+  95% {
+    transform: translateX(4px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes growAndSpin {
+  0% {
+    transform: scale(0.3) rotate(-180deg);
+    opacity: 0.1;
+  }
+  60% {
+    transform: scale(1.1) rotate(20deg);
+    opacity: 1;
+  }
+  80% {
+    transform: scale(0.97) rotate(-5deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+@keyframes fadeToColor {
+  0% {
+    filter: grayscale(100%);
+    opacity: 0.1;
+    transform: scale(0.3);
+  }
+  50% {
+    filter: grayscale(100%);
+    opacity: 0.75;
+    transform: scale(1.1);
+  }
+  100% {
+    filter: grayscale(0%);
+    opacity: 1;
+    transform: scale(1);
+  }
 }

@@ -6,7 +6,14 @@ class mainApp{
         console.log('MainApp contructed');
         this.plyr = new Droid();
         this.helper = new GNRL_HLPR();
+        this.helper.introduce_me();
         this.htmlGnrtr = new HTML_GNRTR();
+        this.htmlGnrtr.introduce_me();
+    }
+
+    appInit(){
+        document.querySelector("#plyr-portrait").src = this.plyr.plyFaceImg;
+        document.querySelector("#plyr-nm").textContent = this.plyr.name;
     }
 
     tstFunc = ()=>{
@@ -24,4 +31,5 @@ class mainApp{
 window.onload = (()=>{
     const mnApp = new mainApp();
     window.app = mnApp;
+    mnApp.appInit();
 });

@@ -2,12 +2,109 @@ export default class HTML_GNRTR {
   constructor() {
     this.name =
       "JS_HTML_GNRTR_" +
-      new Date().toLocaleDateString().slice(0, 10) +
-      Math.floor(Math.random() * 9999);
+      new Date().toISOString().slice(0, 10).replace('. ','-') +
+      ("000" + Math.floor(Math.random() * 9999)).slice(-5);
   }
 
   introduce_me(){
-    console.log('')
+    console.log(`Hi, I'm a HTML GENERATOR instance, my name is: ${this.name}`)
   }
+
+  LMNTGenerator = (
+    tag = "-",
+    clsNms = [],
+    id = "-",
+    txtCntnt = "-",
+    val = "-"
+  ) => {
+    //<SF>
+    // CREATED ON: 2024-04-29 <br>
+    // CREATED BY: AX07057<br>
+    // A HTML element generator, to have a lilltlebit less lines.<br>
+    // PARAMETERS:
+    //×-
+    // @-- tag = the tagname itself -@
+    // @-- id = id if neccessary -@
+    // @-- clsNms = an array of strings, which can be added as class -@
+    // @-- txtCntnt = just the text content -@
+    // @-- val = the value if needed -@
+    // @-- xPrms = any further parameters with name => value pairs -@
+    //-×
+    //CHANGES:
+    //×-
+    // @-- ... -@
+    //-×
+    //</SF>
+
+    if (tag == "-") {
+      tag = "div";
+    }
+    if (id == "-") {
+      id = "lmntId-" + Math.floor(1 + Math.random() * 10000);
+    }
+    if (clsNms == []) {
+      clsNms = ["bg-info"];
+    }
+    if (txtCntnt == "-") {
+      txtCntnt = "Test text into a text element";
+    }
+
+    const LMNT = document.createElement(tag);
+    if (id !== "") {
+      LMNT.id = id;
+    }
+    if (clsNms.length > 0) {
+      for (let ix1 = 0; ix1 < clsNms.length; ix1++) {
+        if (clsNms[ix1] !== "") {
+          LMNT.classList.add(clsNms[ix1]);
+        }
+      }
+    }
+    if (txtCntnt != "") {
+      LMNT.textContent = txtCntnt;
+    }
+    if (val != "") {
+      LMNT.value = val;
+    }
+
+    return LMNT;
+  };
+
+  addBackDrop = (trgt = "", sttc = true) => {
+    if (trgt === "") {
+      trgt = "body";
+    }
+
+    const bckDrp = this.LMNTGenerator(
+      "div",
+      ["loc-backdrop"],
+      "bck-drop",
+      "",
+      ""
+    );
+    document.querySelector(trgt).appendChild(bckDrp);
+    if (!sttc) {
+      bckDrp.addEventListener("click", () => {
+        document.querySelector("#bck-drop").remove();
+      });
+    }
+    return bckDrp;
+  
+  };
+  
+  removeElementsByType = (typ = "class", lmntId = "elemnt-tag") => {
+    let lmntNm = lmntId;
+    if (typ.toUpperCase() == "CLASS") {
+      lmntNm = "." + lmntNm;
+    } else if (typ.toUpperCase() == "ID") {
+      lmntNm = "#" + lmntNm;
+    }
+    const lmntLst = document.querySelectorAll(lmntNm);
+    if (lmntLst.length > 0) {
+      lmntLst.forEach((lm) => {
+        lm.remove();
+      });
+    }
+  };
 
 }

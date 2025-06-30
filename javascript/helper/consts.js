@@ -28,5 +28,8 @@ const CONSTS = {
     "Y",
     "Z",
   ],
+  img_paths:{
+    plyr_prtrts:'/TST_002/assets/graph/plyr_faces/'
+  }
 };
 export { CONSTS };
