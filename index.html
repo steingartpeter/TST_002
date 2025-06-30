@@ -1,38 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/base.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style/base.css" />
     <title>TST-002</title>
-</head>
-<body>
+  </head>
+  <body>
     <main id="main-screen">
-        <div class="usr-card growAndFadeIn">
-            <div class="wndw-hdr">
-                <div class="wndw-symbol"></div>
-                <div class="wndw-title">Window Title</div>
-                <div class="close-btn">X</div>
-            </div>
-            <div class="usr-crd-hdr">
-                <div class="portrait"><img id="plyr-portrait" src="/TST_002/assets/graph/plyr_faces/plyr_fc_001.jpg" alt="plyr-portrait" /></div>
-                <div class="name">
-                    <p>NAME:</p>
-                    <p id="plyr-nm"></p>
-                </div>
-                <div class="level">
-                    <p>LEVEL:</p>
-                    <p id="plyr-lvl"></p>
-                </div>
-                <div class="xp">
-                    <p>XP:</p>
-                    <p id="plyr-xp"></p>
-                </div>
-            </div>
-            <div class="usr-crd-body"></div>
-            <div class="usr-crd-ftr"></div>
+      <div class="usr-card growAndFadeIn">
+        <div class="wndw-hdr">
+          <div class="wndw-symbol"></div>
+          <div class="wndw-title">Window Title</div>
+          <div class="close-btn">X</div>
         </div>
+        <div class="usr-crd-hdr">
+          <div class="portrait">
+            <img
+              id="plyr-portrait"
+              src="/TST_002/assets/graph/plyr_faces/plyr_fc_001.jpg"
+              alt="plyr-portrait" />
+          </div>
+          <div class="descr">
+            <div class="descr-sctn">
+              <p class="descr-label">NAME:</p>
+              <p id="plyr-nm"></p>
+            </div>
+            <div class="descr-sctn">
+              <p class="descr-label">LEVEL:</p>
+              <p id="plyr-lvl"></p>
+            </div>
+            <div class="descr-sctn">
+              <p class="descr-label">XP:</p>
+              <p id="plyr-xp"></p>
+            </div>
+          </div>
+        </div>
+        <div class="usr-crd-body"></div>
+        <div class="usr-crd-ftr"></div>
+      </div>
     </main>
     <script type="module" src="javascript/main.js"></script>
-</body>
+  </body>
 </html>

@@ -17,6 +17,8 @@ class mainApp{
         document.querySelector(".close-btn").addEventListener('click',(evt)=>{
             evt.target.parentNode.parentNode.remove();
         })  
+        document.querySelector("#plyr-lvl").textContent = this.plyr.lvl;
+        document.querySelector("#plyr-xp").textContent = this.plyr.xp;
     }
 
     tstFunc = ()=>{
