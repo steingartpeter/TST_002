@@ -1,9 +1,13 @@
+import GNRL_HLPR from "/TST_002/javascript/helper/genHelper.js";
+import HTML_GNRTR from "/TST_002/javascript/helper/htmlGnrtr.js";
+import { CONSTS } from "/TST_002/javascript/helper/consts.js";
 export default class Droid {
   // Private fields to encapsulate the data.
   // They can only be accessed from within the class.
   #lvl;
   #xp;
   #name;
+  #bio;
 
   constructor(prmObj = {}) {
     // Using the nullish coalescing operator (??) for cleaner defaults.
@@ -16,28 +20,32 @@ export default class Droid {
     // Use the setters during construction to ensure validation logic is applied.
     this.lvl = prmObj.lvl ?? 0;
     this.xp = prmObj.xp ?? 0;
+
+    this.helper = new GNRL_HLPR();
+    this.#bio = '';
   }
 
-  #gnrtRndmName(){
+  #gnrtRndmName() {
     // genrate a random name
-    let rndmNm = '';
-    const letters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
-    const numbers = ['0','1','2','3','4','5','6','7','8','9'];
+    let rndmNm = "";
+    const letters =CONSTS.letters;
+    const numbers = CONSTS.numbers;
+    
     for (let ix1 = 0; ix1 < 3; ix1++) {
-        for (let ix2 = 0; ix2 < 3; ix2++) {
-            if(ix2 % 2 === 0){
-                console.log()
-                rndmNm += letters[Math.floor(Math.random*letters.length)];
-            }else{
-                rndmNm += numbers[Math.floor(Math.random*numbers.length)];
-            }
-            rndmNm += '-';
-        }    
+      for (let ix2 = 0; ix2 < 3; ix2++) {
+        if (ix1 % 2 === 0) {
+          const idx = Math.floor(Math.random() * letters.length);
+          rndmNm += letters[idx];
+        } else {
+          const idx = Math.floor(Math.random() * numbers.length);
+          rndmNm += numbers[Math.floor(Math.random() * numbers.length)];
+        }
+      }
+      rndmNm += "-";
     }
-    console.log('Generated name: '+ rndmNm);
+    rndmNm += ("00000" + new Date().getMilliseconds()).slice(-4);
     return rndmNm;
   }
-
 
   get lvl() {
     return this.#lvl;
@@ -65,14 +73,14 @@ export default class Droid {
     this.#xp = value;
   }
 
-  get name(){
+  get name() {
     return this.#name;
   }
 
-  set name(value){
-    if(value === ''){
-        console.log('The name can not be empty string!');
-        return;
+  set name(value) {
+    if (value === "") {
+      console.log("The name can not be empty string!");
+      return;
     }
     this.#name = value;
   }
