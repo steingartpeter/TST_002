@@ -13,7 +13,7 @@ body {
   padding: 12px;
 }
 body main {
-  /* min-height: 95vh; */
+  padding:3px;
 }
 
 .loc-backdrop {
@@ -26,14 +26,46 @@ body main {
   height: 100vh;
   background-color: #000;
 }
-
+.wndw-hdr{
+    width: 100%;
+    height: 26px;
+    background-color: #4b71d0;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    border:2px solid #ccc;
+    border-bottom: 4px solid #cdcdcd;
+    font-family: 'Courier New', Courier, monospace;
+}
+.wndw-hdr .wndw-symbol-0{
+    width:21px;
+    height:21px;
+    border:#222 ridge 7px;
+    background-color: #82c1e5;
+}
+.wndw-hdr .wndw-title{
+    color: #000;
+}
+.wndw-hdr .close-btn{
+    color:#ffffff;
+    background-color: #EE2200;
+    width:23px;
+    height:23px;
+    border:3px solid #7a076b;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    cursor: pointer;
+}
 .usr-card {
   height: 520px;
   width: 320px;
   background: radial-gradient(circle,rgba(20, 61, 79, 1) 4%, rgba(100, 162, 209, 1) 100%);
   border: 3px solid #cdcdcd;
   display:flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
   animation: growAndFadeIn 1.1s;

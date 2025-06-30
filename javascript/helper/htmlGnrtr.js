@@ -91,7 +91,7 @@ export default class HTML_GNRTR {
     return bckDrp;
   
   };
-  
+
   removeElementsByType = (typ = "class", lmntId = "elemnt-tag") => {
     let lmntNm = lmntId;
     if (typ.toUpperCase() == "CLASS") {
@@ -106,5 +106,24 @@ export default class HTML_GNRTR {
       });
     }
   };
+
+  gnrtStdWndwTTLbar = (prmObj)=>{
+    const ttlBar = this.LMNTGenerator('div',['wndw-hdr'],'','','');
+    smblCls = prmObj.wndwSymbol ?? 'wndw-symbol-0';
+    const wndwSymbol = this.LMNTGenerator('div',[smblCls],'','','');
+    const ttl = prmObj.title ?? 'New Window Title';
+    const wndwTitle = this.LMNTGenerator('div',['wndw-title'],'',ttl,'');
+    const clsBtn = this.gnrtCloseBtn();
+
+    ttlBar.appendChild(wndwSymbol);
+    ttlBar.appendChild(ttl);
+    ttlBar.appendChild(clsBtn);
+
+    return ttlBar;
+  }
+
+  gnrtCloseBtn = ()=>{
+    return this.LMNTGenerator('div',['close-btn'],'','X','');
+  }
 
 }

@@ -14,6 +14,9 @@ class mainApp{
     appInit(){
         document.querySelector("#plyr-portrait").src = this.plyr.plyFaceImg;
         document.querySelector("#plyr-nm").textContent = this.plyr.name;
+        document.querySelector(".close-btn").addEventListener('click',(evt)=>{
+            evt.target.parentNode.parentNode.remove();
+        })  
     }
 
     tstFunc = ()=>{
