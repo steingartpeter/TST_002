@@ -10,6 +10,10 @@ export default class HTML_GNRTR {
     console.log(`Hi, I'm a HTML GENERATOR instance, my name is: ${this.name}`)
   }
 
+  gnrtPrgrbar = (prmObj)=>{
+    
+  }
+
   LMNTGenerator = (
     tag = "-",
     clsNms = [],

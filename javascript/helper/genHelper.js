@@ -14,4 +14,15 @@ export default class GNRL_HLPR {
   rndmInt(minNr = 0, maxNr = 100) {
     return Math.floor(minNr + Math.random * (maxNr - minNr));
   }
+
+  secToTimeString(nrOfScs = 100){
+    let rsltString = '';
+    let hrs = Math.floor(nrOfScs/3600).toString().padStart(2,'0');
+    let rem = nrOfScs - (hrs * 3600);
+    let minutes = Math.floor(rem/60).toString().padStart(2,'0');
+    let secs = (rem - (60 * minutes)).toString().padStart(2,'0');
+
+    return hrs+':'+minutes+':'+secs;
+
+  }
 }
