@@ -48,7 +48,6 @@ export default class HTML_GNRTR {
       const curr = prmObj.curr??0;
       const wdth = Math.floor(curr/max*100).toString()+'%';
       const pb = prgIntern;
-      console.log(`wdth:${wdth}`);
       pb.style.width = wdth;
       prgBrText.textContent = max+"/"+curr;
     }

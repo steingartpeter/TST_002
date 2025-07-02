@@ -9,6 +9,7 @@ export default class Droid {
   #name;
   #bio;
   #plyFaceImg;
+  #nrOfSkillPintsToUse;
 
   constructor(prmObj = {}) {
     // Using the nullish coalescing operator (??) for cleaner defaults.
@@ -19,10 +20,11 @@ export default class Droid {
     this.currencies = prmObj.currencies ?? [];
 
     // Use the setters during construction to ensure validation logic is applied.
-    this.lvl = prmObj.lvl ?? 0;
+    this.lvl = prmObj.lvl ?? 1;
     this.xp = prmObj.xp ?? 0;
     this.plyFaceImg =
       prmObj.plyFaceImg ?? "plyr_fc_001.jpg";
+    this.#nrOfSkillPintsToUse = 0;
 
     this.helper = new GNRL_HLPR();
     this.bio = "";
@@ -108,4 +110,26 @@ export default class Droid {
     }
     this.#plyFaceImg = CONSTS.img_paths.plyr_prtrts + imgNm;
   }
+
+  gainXP=(val)=>{
+    if(typeof(val) !== 'number' || val < 0){
+      return;
+    }
+    this.#xp += val;
+    const lvled = this.chckLvlUp();
+    return lvled;
+  }
+
+  chckLvlUp = ()=>{
+    const currLvl = this.#lvl+1;
+    const currXP = this.#xp;
+    const nxtXPLimit = CONSTS.lvl_list[currLvl];
+    if(currXP >= nxtXPLimit){
+      this.#lvl += 1;
+      return true;
+    } 
+    return false;
+
+  }
+
 }

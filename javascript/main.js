@@ -1,6 +1,7 @@
 import Droid from "/TST_002/data/plyr.js";
 import HTML_GNRTR from "/TST_002/javascript/helper/htmlGnrtr.js"
 import GNRL_HLPR from "/TST_002/javascript/helper/genHelper.js";
+import { CONSTS } from "./helper/consts.js";
 class mainApp{
     constructor(){
         console.log('MainApp contructed');
@@ -44,17 +45,13 @@ class mainApp{
     }
 
     tstFunc = ()=>{
-        const prmObj = {
-            colorClass:"prgrbar-intern-orange",
-            pbText:'00:00:00',
-            initWdth:'0',
-            dynamic:false,
-            duration:60,
-            maxVal:100,
-            curr:41,
+        const XPamount = Math.floor(10 + Math.random()*100);
+        const lvlUp = this.plyr.gainXP(XPamount);
+        document.querySelector('p#plyr-xp').textContent = this.plyr.xp + '/ ' + CONSTS.lvl_list[(this.plyr.lvl+1)];
+        if(lvlUp){
+            document.querySelector('p#plyr-lvl').textContent = this.plyr.lvl;
+            //document.querySelector('p#plyr-xp').textContent = this.plyr.xp;
         }
-        const pb0 = this.htmlGnrtr.gnrtPrgrbar(prmObj);
-        document.querySelector('body main').append(pb0);
     }
 
 

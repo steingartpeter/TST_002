@@ -1,3 +1,4 @@
+import { CONSTS } from "./consts.js";
 export default class GNRL_HLPR {
   constructor() {
     this.id =
@@ -25,4 +26,6 @@ export default class GNRL_HLPR {
     return hrs+':'+minutes+':'+secs;
 
   }
+
+  
 }
