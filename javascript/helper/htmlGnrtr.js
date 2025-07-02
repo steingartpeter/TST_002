@@ -1,18 +1,60 @@
+import GNRL_HLPR from "./genHelper.js";
+
 export default class HTML_GNRTR {
   constructor() {
     this.name =
       "JS_HTML_GNRTR_" +
-      new Date().toISOString().slice(0, 10).replace('. ','-') +
+      new Date().toISOString().slice(0, 10).replace(". ", "-") +
       ("000" + Math.floor(Math.random() * 9999)).slice(-5);
+      this.helper = new GNRL_HLPR();
   }
 
-  introduce_me(){
-    console.log(`Hi, I'm a HTML GENERATOR instance, my name is: ${this.name}`)
+  introduce_me() {
+    console.log(`Hi, I'm a HTML GENERATOR instance, my name is: ${this.name}`);
   }
 
-  gnrtPrgrbar = (prmObj)=>{
-    
-  }
+  gnrtPrgrbar = (prmObj = {}) => {
+    const prgrBar = this.LMNTGenerator("div", ["prgrpbar-ext"], "", "", "");
+    const prgIntern = this.LMNTGenerator("div", ["prgrbar-intern"], "", "", "");
+    prgIntern.classList.add(prmObj.colorClass ?? "");
+    prgIntern.style.width = prmObj.initWdth ?? "0%";
+    const prgBrText = this.LMNTGenerator(
+      "span",
+      ["prgrbar-text"],
+      "",
+      prmObj.pbText ?? "",
+      ""
+    );
+    prgrBar.appendChild(prgIntern);
+    prgIntern.appendChild(prgBrText);
+    if (prmObj.dynamic === true) {
+      const dur_in_sec = prmObj.duration ?? 35;
+      let elaps = 0;
+      let wdth = Number(prmObj.initWdth.replace('%','')) ?? 0;
+      const interv0 = setInterval(() => {
+        const pb = prgIntern;
+        wdth += 100 / dur_in_sec;
+        pb.style.width = wdth + "%";
+        elaps++;
+        let txt = this.helper.secToTimeString(elaps);
+        prgBrText.textContent = txt;
+        if (wdth >= 100) {
+          pb.style.width = "100%";
+          clearInterval(interv0);
+        }
+      }, 1000);
+    }else{
+      const max = prmObj.maxVal??100;
+      const curr = prmObj.curr??0;
+      const wdth = Math.floor(curr/max*100).toString()+'%';
+      const pb = prgIntern;
+      console.log(`wdth:${wdth}`);
+      pb.style.width = wdth;
+      prgBrText.textContent = max+"/"+curr;
+    }
+
+    return prgrBar;
+  };
 
   LMNTGenerator = (
     tag = "-",
@@ -93,7 +135,6 @@ export default class HTML_GNRTR {
       });
     }
     return bckDrp;
-  
   };
 
   removeElementsByType = (typ = "class", lmntId = "elemnt-tag") => {
@@ -111,12 +152,12 @@ export default class HTML_GNRTR {
     }
   };
 
-  gnrtStdWndwTTLbar = (prmObj)=>{
-    const ttlBar = this.LMNTGenerator('div',['wndw-hdr'],'','','');
-    smblCls = prmObj.wndwSymbol ?? 'wndw-symbol-0';
-    const wndwSymbol = this.LMNTGenerator('div',[smblCls],'','','');
-    const ttl = prmObj.title ?? 'New Window Title';
-    const wndwTitle = this.LMNTGenerator('div',['wndw-title'],'',ttl,'');
+  gnrtStdWndwTTLbar = (prmObj) => {
+    const ttlBar = this.LMNTGenerator("div", ["wndw-hdr"], "", "", "");
+    smblCls = prmObj.wndwSymbol ?? "wndw-symbol-0";
+    const wndwSymbol = this.LMNTGenerator("div", [smblCls], "", "", "");
+    const ttl = prmObj.title ?? "New Window Title";
+    const wndwTitle = this.LMNTGenerator("div", ["wndw-title"], "", ttl, "");
     const clsBtn = this.gnrtCloseBtn();
 
     ttlBar.appendChild(wndwSymbol);
@@ -124,10 +165,9 @@ export default class HTML_GNRTR {
     ttlBar.appendChild(clsBtn);
 
     return ttlBar;
-  }
+  };
 
-  gnrtCloseBtn = ()=>{
-    return this.LMNTGenerator('div',['close-btn'],'','X','');
-  }
-
+  gnrtCloseBtn = () => {
+    return this.LMNTGenerator("div", ["close-btn"], "", "X", "");
+  };
 }

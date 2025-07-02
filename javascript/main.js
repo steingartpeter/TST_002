@@ -4,6 +4,7 @@ import GNRL_HLPR from "/TST_002/javascript/helper/genHelper.js";
 class mainApp{
     constructor(){
         console.log('MainApp contructed');
+        this.htmlGnrtr = new HTML_GNRTR();
         this.plyr = new Droid();
         this.helper = new GNRL_HLPR();
         this.helper.introduce_me();
@@ -43,11 +44,17 @@ class mainApp{
     }
 
     tstFunc = ()=>{
-        console.log("Test OK, function van be used from console.");
-        const div = document.createElement('div');
-        div.classList.add('tstClass');
-        div.textContent='TESZT DIV 111';
-        document.querySelector('body main').append(div);
+        const prmObj = {
+            colorClass:"prgrbar-intern-orange",
+            pbText:'00:00:00',
+            initWdth:'0',
+            dynamic:false,
+            duration:60,
+            maxVal:100,
+            curr:41,
+        }
+        const pb0 = this.htmlGnrtr.gnrtPrgrbar(prmObj);
+        document.querySelector('body main').append(pb0);
     }
 
 

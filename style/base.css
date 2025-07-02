@@ -134,13 +134,11 @@ body main {
 .prgrbar-intern {
   width: 0%;
   height: 100%;
-  /* background: #143d4f;
-  background: linear-gradient(
-    180deg,
-    rgba(20, 61, 79, 1) 0%,
-    rgba(100, 162, 209, 1) 50%,
-    rgba(20, 61, 79, 1) 100%
-  ); */
+  transition: width 0.3s ease;
+  text-align: center;
+  padding: 5px;
+}
+.prgrbar-intern-green {
   background: #8fe866;
   background: linear-gradient(
     180deg,
@@ -148,9 +146,24 @@ body main {
     rgba(22, 115, 14, 1) 50%,
     rgba(143, 232, 102, 1) 100%
   );
-  transition: width 0.3s ease;
-  text-align: center;
-  padding: 5px;
+}
+.prgrbar-intern-blue {
+  background: #143d4f;
+  background: linear-gradient(
+    180deg,
+    rgba(20, 61, 79, 1) 0%,
+    rgba(100, 162, 209, 1) 50%,
+    rgba(20, 61, 79, 1) 100%
+  );
+}
+.prgrbar-intern-orange {
+  background: #c58b1f;
+  background: linear-gradient(
+    180deg,
+    rgb(192, 112, 8) 0%,
+    rgb(246, 248, 98) 50%,
+    rgba(192, 112, 8) 100%
+  );
 }
 .prgrbar-text {
   position: sticky;
@@ -163,6 +176,21 @@ body main {
   border-left: 1px solid #ccc;
   border-radius: 4px;
   box-shadow: 2px 2px 4px #000;
+}
+.btn {
+  padding: 3px 6px;
+  text-align: center;
+  font-family: monospace;
+  font-weight: bold;
+  border-radius: 6px;
+  margin: 6px;
+  cursor: pointer;
+}
+.btn:hover{
+  border-radius: 1px;
+  border-bottom: 2px solid rgba(255,100,100,.6);
+  box-shadow: 3px 3px 6px #fff;
+  background-color: #d69eec;
 }
 @keyframes growAndFadeIn {
   from {
