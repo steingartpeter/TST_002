@@ -1,5 +1,4 @@
 import GNRL_HLPR from "/TST_002/javascript/helper/genHelper.js";
-import HTML_GNRTR from "/TST_002/javascript/helper/htmlGnrtr.js";
 import { CONSTS } from "/TST_002/javascript/helper/consts.js";
 export default class Droid {
   // Private fields to encapsulate the data.
@@ -22,8 +21,7 @@ export default class Droid {
     // Use the setters during construction to ensure validation logic is applied.
     this.lvl = prmObj.lvl ?? 1;
     this.xp = prmObj.xp ?? 0;
-    this.plyFaceImg =
-      prmObj.plyFaceImg ?? "plyr_fc_001.jpg";
+    this.plyFaceImg = prmObj.plyFaceImg ?? "plyr_fc_001.jpg";
     this.#nrOfSkillPintsToUse = 0;
 
     this.helper = new GNRL_HLPR();
@@ -31,27 +29,7 @@ export default class Droid {
     console.log(this);
   }
 
-  #gnrtRndmName() {
-    // genrate a random name
-    let rndmNm = "";
-    const letters = CONSTS.letters;
-    const numbers = CONSTS.numbers;
-
-    for (let ix1 = 0; ix1 < 3; ix1++) {
-      for (let ix2 = 0; ix2 < 3; ix2++) {
-        if (ix1 % 2 === 0) {
-          const idx = Math.floor(Math.random() * letters.length);
-          rndmNm += letters[idx];
-        } else {
-          const idx = Math.floor(Math.random() * numbers.length);
-          rndmNm += numbers[Math.floor(Math.random() * numbers.length)];
-        }
-      }
-      rndmNm += "-";
-    }
-    rndmNm += ("00000" + new Date().getMilliseconds()).slice(-4);
-    return rndmNm;
-  }
+  // getters / setters
 
   get lvl() {
     return this.#lvl;
@@ -59,9 +37,7 @@ export default class Droid {
 
   set lvl(value) {
     if (typeof value !== "number" || value < 0) {
-      console.error(
-        "Invalid level value. Level must be a non-negative number."
-      );
+      console.error("Invalid level value. Level must be a non-negative number.");
       return;
     }
     this.#lvl = value;
@@ -104,32 +80,56 @@ export default class Droid {
   }
 
   set plyFaceImg(imgNm = "") {
-    if(imgNm == undefined || imgNm == ""){
-      console.log('plyr.js #106:  MISING player-portrait filename');
+    if (imgNm == undefined || imgNm == "") {
+      console.log("plyr.js #106:  MISING player-portrait filename");
       return;
     }
     this.#plyFaceImg = CONSTS.img_paths.plyr_prtrts + imgNm;
   }
 
-  gainXP=(val)=>{
-    if(typeof(val) !== 'number' || val < 0){
+  // functional methods
+
+  gainXP = (val) => {
+    if (typeof val !== "number" || val < 0) {
       return;
     }
     this.#xp += val;
     const lvled = this.chckLvlUp();
     return lvled;
-  }
+  };
 
-  chckLvlUp = ()=>{
-    const currLvl = this.#lvl+1;
-    const currXP = this.#xp;
-    const nxtXPLimit = CONSTS.lvl_list[currLvl];
-    if(currXP >= nxtXPLimit){
+  chckLvlUp = () => {
+    let leveledUp = false;
+    // Use a while loop to handle multiple level-ups from a single XP gain.
+    // Keep leveling up as long as a next level exists and the player has enough XP for it.
+    while (CONSTS.lvl_list[this.#lvl + 1] !== undefined && this.#xp >= CONSTS.lvl_list[this.#lvl + 1]) {
       this.#lvl += 1;
-      return true;
-    } 
-    return false;
+      leveledUp = true;
+    }
+    return leveledUp;
+  };
 
+  // private methoods
+
+  #gnrtRndmName() {
+    // genrate a random name
+    let rndmNm = "";
+    const letters = CONSTS.letters;
+    const numbers = CONSTS.numbers;
+
+    for (let ix1 = 0; ix1 < 3; ix1++) {
+      for (let ix2 = 0; ix2 < 3; ix2++) {
+        if (ix1 % 2 === 0) {
+          const idx = Math.floor(Math.random() * letters.length);
+          rndmNm += letters[idx];
+        } else {
+          const idx = Math.floor(Math.random() * numbers.length);
+          rndmNm += numbers[Math.floor(Math.random() * numbers.length)];
+        }
+      }
+      rndmNm += "-";
+    }
+    rndmNm += ("00000" + new Date().getMilliseconds()).slice(-4);
+    return rndmNm;
   }
-
 }

@@ -9,8 +9,10 @@ class mainApp {
     this.plyr = new Droid();
     this.helper = new GNRL_HLPR();
     this.helper.introduce_me();
-    this.htmlGnrtr = new HTML_GNRTR();
     this.htmlGnrtr.introduce_me();
+
+    this.levelUpSound = new Audio("/TST_002/assets/sounds/effects/level_up.mp3");
+    this.levelUpSound.volume = 0.5; // Set volume to 50%
   }
 
   appInit() {
@@ -49,6 +51,7 @@ class mainApp {
     if (lvlUp) {
       document.querySelector("#plyr-lvl").textContent = this.plyr.lvl;
       //document.querySelector('p#plyr-xp').textContent = this.plyr.xp;
+      this.levelUpSound.play();
     }
   };
 }
