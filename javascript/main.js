@@ -11,7 +11,9 @@ class mainApp {
     this.helper.introduce_me();
     this.htmlGnrtr.introduce_me();
 
-    this.levelUpSound = new Audio("/TST_002/assets/sounds/effects/level_up.mp3");
+    this.levelUpSound = new Audio(
+      "/TST_002/assets/sounds/effects/level_up.mp3"
+    );
     this.levelUpSound.volume = 0.5; // Set volume to 50%
   }
 
@@ -45,13 +47,23 @@ class mainApp {
   }
 
   tstFunc = () => {
+    const oldCards = document.querySelectorAll(".usr-card");
+    if (oldCards) {
+      oldCards.forEach((c) => {
+        c.remove();
+      });
+    }
+    const plyrWndw = this.htmlGnrtr.gnrtPlyrWndw0({ plyr: this.plyr });
+    document.querySelector("#main-screen").appendChild(plyrWndw);
     const XPamount = Math.floor(10 + Math.random() * 100);
     const lvlUp = this.plyr.gainXP(XPamount);
-    document.querySelector("#plyr-xp").textContent = this.plyr.xp + "/ " + CONSTS.lvl_list[this.plyr.lvl + 1];
+    document.querySelector("#plyr-xp").textContent =
+      this.plyr.xp + "/ " + CONSTS.lvl_list[this.plyr.lvl + 1];
     if (lvlUp) {
       document.querySelector("#plyr-lvl").textContent = this.plyr.lvl;
       //document.querySelector('p#plyr-xp').textContent = this.plyr.xp;
       this.levelUpSound.play();
+      this.htmlGnrtr.addLvlUpWndw(this.plyr);
     }
   };
 }

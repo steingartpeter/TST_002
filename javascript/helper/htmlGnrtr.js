@@ -13,6 +13,36 @@ export default class HTML_GNRTR {
     console.log(`Hi, I'm a HTML GENERATOR instance, my name is: ${this.name}`);
   }
 
+  gnrtPlyrWndw0 = (prmObj = null)=>{
+    console.log()
+    const plyrWnd = this.LMNTGenerator('div',['usr-card','growAndFadeIn'],'lyr-portrait','','');
+    const wHdr = this.gnrtStdWndwTTLbar({title:prmObj.plyr.name});
+    plyrWnd.appendChild(wHdr);
+    const plyrCrdHdr = this.LMNTGenerator('div',['usr-crd-hdr'],'','','');
+    const portrt = this.LMNTGenerator('div',['portrait'],'','','');
+    const prtrImg = this.LMNTGenerator('img',[],'plyr-portrait','','','');
+    portrt.appendChild(prtrImg);
+    const descr = this.LMNTGenerator('div',['descr'],'','','');
+    for (let ix1 = 0; ix1 < 3; ix1++) {
+      const dscrP = this.LMNTGenerator('p',['descr-sctn']);
+      if(ix1 == 0){
+        const p0 = this.LMNTGenerator('p',['descr-label'],'','NAME:','');
+        const p1 = this.LMNTGenerator('p',[],'plyr-nm','','');
+        dscrP.appendChild(p0);
+        dscrP.appendChild(p1);
+      }
+      descr.appendChild(dscrP);
+    }
+    plyrCrdHdr.appendChild(portrt);
+    plyrCrdHdr.appendChild(descr);
+    const plyrCrdBdy = this.LMNTGenerator('div',['usr-crd-body'],'','','');
+
+    const plyrCrdFtr = this.LMNTGenerator('div',['usr-crd-ftr'],'','','');
+
+
+    return plyrWnd;
+  }
+
   gnrtPrgrbar = (prmObj = {}) => {
     const prgrBar = this.LMNTGenerator("div", ["prgrpbar-ext"], "", "", "");
     const prgIntern = this.LMNTGenerator("div", ["prgrbar-intern"], "", "", "");
@@ -153,14 +183,14 @@ export default class HTML_GNRTR {
 
   gnrtStdWndwTTLbar = (prmObj) => {
     const ttlBar = this.LMNTGenerator("div", ["wndw-hdr"], "", "", "");
-    smblCls = prmObj.wndwSymbol ?? "wndw-symbol-0";
+    const smblCls = prmObj.wndwSymbol ?? "wndw-symbol-0";
     const wndwSymbol = this.LMNTGenerator("div", [smblCls], "", "", "");
     const ttl = prmObj.title ?? "New Window Title";
     const wndwTitle = this.LMNTGenerator("div", ["wndw-title"], "", ttl, "");
     const clsBtn = this.gnrtCloseBtn();
 
     ttlBar.appendChild(wndwSymbol);
-    ttlBar.appendChild(ttl);
+    ttlBar.appendChild(wndwTitle);
     ttlBar.appendChild(clsBtn);
 
     return ttlBar;

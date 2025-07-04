@@ -105,6 +105,7 @@ export default class Droid {
     while (CONSTS.lvl_list[this.#lvl + 1] !== undefined && this.#xp >= CONSTS.lvl_list[this.#lvl + 1]) {
       this.#lvl += 1;
       leveledUp = true;
+      this.#nrOfSkillPintsToUse ++;
     }
     return leveledUp;
   };
