@@ -6,42 +6,63 @@ export default class HTML_GNRTR {
       "JS_HTML_GNRTR_" +
       new Date().toISOString().slice(0, 10).replace(". ", "-") +
       ("000" + Math.floor(Math.random() * 9999)).slice(-5);
-      this.helper = new GNRL_HLPR();
+    this.helper = new GNRL_HLPR();
   }
 
   introduce_me() {
     console.log(`Hi, I'm a HTML GENERATOR instance, my name is: ${this.name}`);
   }
 
-  gnrtPlyrWndw0 = (prmObj = null)=>{
-    console.log()
-    const plyrWnd = this.LMNTGenerator('div',['usr-card','growAndFadeIn'],'lyr-portrait','','');
-    const wHdr = this.gnrtStdWndwTTLbar({title:prmObj.plyr.name});
+  gnrtPlyrWndw0 = (prmObj = null) => {
+    console.log();
+    const plyrWnd = this.LMNTGenerator(
+      "div",
+      ["usr-card", "growAndFadeIn"],
+      "plyr-portrait",
+      "",
+      ""
+    );
+    const wHdr = this.gnrtStdWndwTTLbar({ title: prmObj.plyr.name });
     plyrWnd.appendChild(wHdr);
-    const plyrCrdHdr = this.LMNTGenerator('div',['usr-crd-hdr'],'','','');
-    const portrt = this.LMNTGenerator('div',['portrait'],'','','');
-    const prtrImg = this.LMNTGenerator('img',[],'plyr-portrait','','','');
+    const plyrCrdHdr = this.LMNTGenerator("div", ["usr-crd-hdr"], "", "", "");
+    const portrt = this.LMNTGenerator("div", ["portrait"], "", "", "");
+    const prtrImg = this.LMNTGenerator("img", [], "plyr-portrait", "", "", "");
     portrt.appendChild(prtrImg);
-    const descr = this.LMNTGenerator('div',['descr'],'','','');
+    const descr = this.LMNTGenerator("div", ["descr"], "", "", "");
     for (let ix1 = 0; ix1 < 3; ix1++) {
-      const dscrP = this.LMNTGenerator('p',['descr-sctn']);
-      if(ix1 == 0){
-        const p0 = this.LMNTGenerator('p',['descr-label'],'','NAME:','');
-        const p1 = this.LMNTGenerator('p',[],'plyr-nm','','');
+      const dscrP = this.LMNTGenerator("p", ["descr-sctn"], "", "", "");
+      if (ix1 == 0) {
+        const p0 = this.LMNTGenerator("p", ["descr-label"], "", "NAME:", "");
+        const p1 = this.LMNTGenerator("p", [], "plyr-nm", "", "");
+        dscrP.appendChild(p0);
+        dscrP.appendChild(p1);
+      } else if (ix1 == 1) {
+        const p0 = this.LMNTGenerator("p", ["descr-label"], "", "LEVEL:", "");
+        const p1 = this.LMNTGenerator("p", [], "plyr-lvl", "", "");
+        dscrP.appendChild(p0);
+        dscrP.appendChild(p1);
+      } else if (ix1 == 2) {
+        const p0 = this.LMNTGenerator("p", ["descr-label"], "", "XP:", "");
+        const p1 = this.LMNTGenerator("p", [], "plyr-xp", "", "");
         dscrP.appendChild(p0);
         dscrP.appendChild(p1);
       }
       descr.appendChild(dscrP);
     }
+    plyrWnd.appendChild(plyrCrdHdr);
     plyrCrdHdr.appendChild(portrt);
     plyrCrdHdr.appendChild(descr);
-    const plyrCrdBdy = this.LMNTGenerator('div',['usr-crd-body'],'','','');
 
-    const plyrCrdFtr = this.LMNTGenerator('div',['usr-crd-ftr'],'','','');
+    // body
+    const plyrCrdBdy = this.LMNTGenerator("div", ["usr-crd-body"], "", "", "");
+    plyrWnd.appendChild(plyrCrdBdy);
 
+    // footer
+    const plyrCrdFtr = this.LMNTGenerator("div", ["usr-crd-ftr"], "", "", "");
+    plyrWnd.appendChild(plyrCrdFtr);
 
     return plyrWnd;
-  }
+  };
 
   gnrtPrgrbar = (prmObj = {}) => {
     const prgrBar = this.LMNTGenerator("div", ["prgrpbar-ext"], "", "", "");
@@ -60,7 +81,7 @@ export default class HTML_GNRTR {
     if (prmObj.dynamic === true) {
       const dur_in_sec = prmObj.duration ?? 35;
       let elaps = 0;
-      let wdth = Number(prmObj.initWdth.replace('%','')) ?? 0;
+      let wdth = Number(prmObj.initWdth.replace("%", "")) ?? 0;
       const interv0 = setInterval(() => {
         const pb = prgIntern;
         wdth += 100 / dur_in_sec;
@@ -73,13 +94,13 @@ export default class HTML_GNRTR {
           clearInterval(interv0);
         }
       }, 1000);
-    }else{
-      const max = prmObj.maxVal??100;
-      const curr = prmObj.curr??0;
-      const wdth = Math.floor(curr/max*100).toString()+'%';
+    } else {
+      const max = prmObj.maxVal ?? 100;
+      const curr = prmObj.curr ?? 0;
+      const wdth = Math.floor((curr / max) * 100).toString() + "%";
       const pb = prgIntern;
       pb.style.width = wdth;
-      prgBrText.textContent = max+"/"+curr;
+      prgBrText.textContent = max + "/" + curr;
     }
 
     return prgrBar;
@@ -197,6 +218,10 @@ export default class HTML_GNRTR {
   };
 
   gnrtCloseBtn = () => {
-    return this.LMNTGenerator("div", ["close-btn"], "", "X", "");
+    const cls_btn = this.LMNTGenerator("div", ["close-btn"], "", "X", "");
+    cls_btn.addEventListener("click", (evt) => {
+      evt.target.parentNode.parentNode.remove();
+    });
+    return cls_btn;
   };
 }

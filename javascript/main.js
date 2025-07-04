@@ -54,7 +54,11 @@ class mainApp {
       });
     }
     const plyrWndw = this.htmlGnrtr.gnrtPlyrWndw0({ plyr: this.plyr });
+    plyrWndw.querySelector('#plyr-portrait').src = this.plyr.plyFaceImg;
+    plyrWndw.querySelector("#plyr-nm").textContent = this.plyr.name;
+    plyrWndw.querySelector("#plyr-lvl").textContent = this.plyr.lvl;
     document.querySelector("#main-screen").appendChild(plyrWndw);
+    
     const XPamount = Math.floor(10 + Math.random() * 100);
     const lvlUp = this.plyr.gainXP(XPamount);
     document.querySelector("#plyr-xp").textContent =
