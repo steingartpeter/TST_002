@@ -8,7 +8,12 @@ export default class Droid {
   #name;
   #bio;
   #plyFaceImg;
-  #nrOfSkillPintsToUse;
+  #nrOfSkillPointsToUse;
+  #nrOfStatPointsToUse;
+  #cpu;
+  #ram;
+  #integrity;
+
 
   constructor(prmObj = {}) {
     // Using the nullish coalescing operator (??) for cleaner defaults.
@@ -22,7 +27,11 @@ export default class Droid {
     this.lvl = prmObj.lvl ?? 1;
     this.xp = prmObj.xp ?? 0;
     this.plyFaceImg = prmObj.plyFaceImg ?? "plyr_fc_001.jpg";
-    this.#nrOfSkillPintsToUse = 0;
+    this.cpu = prmObj.cpu ?? 100;
+    this.ram = prmObj.ram ?? 100;
+    this.integrity = prmObj.integrity ?? 100;
+    this.nrOfSkillPointsToUse = 0;
+    this.nrOfStatPointsToUse = 0;
 
     this.helper = new GNRL_HLPR();
     this.bio = "";
@@ -87,6 +96,70 @@ export default class Droid {
     this.#plyFaceImg = CONSTS.img_paths.plyr_prtrts + imgNm;
   }
 
+  get cpu() {
+    return this.#cpu;
+  }
+
+  set cpu(value) {
+    if (typeof value !== "number" || value < 0) {
+      console.error("Invalid CPU value. CPU must be a non-negative number.");
+      return;
+    }
+    this.#cpu = value;
+  }
+
+  get ram() {
+    return this.#ram;
+  }
+
+  set ram(value) {
+    if (typeof value !== "number" || value < 0) {
+      console.error("Invalid RAM value. RAM must be a non-negative number.");
+      return;
+    }
+    this.#ram = value;
+  }
+
+  get integrity() {
+    return this.#integrity;
+  }
+
+  set integrity(value) {
+    if (typeof value !== "number" || value < 0) {
+      console.error("Invalid Integrity value. Integrity must be a non-negative number.");
+      return;
+    }
+    this.#integrity = value;
+  }
+
+  get nrOfSkillPointsToUse() {
+    return this.#nrOfSkillPointsToUse;
+  }
+
+  set nrOfSkillPointsToUse(value) {
+    if (typeof value !== "number" || value < 0) {
+      console.error(
+        "Invalid Skill Points value. It must be a non-negative number."
+      );
+      return;
+    }
+    this.#nrOfSkillPointsToUse = value;
+  }
+
+  get nrOfStatPointsToUse() {
+    return this.#nrOfStatPointsToUse;
+  }
+
+  set nrOfStatPointsToUse(value) {
+    if (typeof value !== "number" || value < 0) {
+      console.error(
+        "Invalid Stat Points value. It must be a non-negative number."
+      );
+      return;
+    }
+    this.#nrOfStatPointsToUse = value;
+  }
+
   // functional methods
 
   gainXP = (val) => {
@@ -105,7 +178,7 @@ export default class Droid {
     while (CONSTS.lvl_list[this.#lvl + 1] !== undefined && this.#xp >= CONSTS.lvl_list[this.#lvl + 1]) {
       this.#lvl += 1;
       leveledUp = true;
-      this.#nrOfSkillPintsToUse ++;
+      this.#nrOfSkillPointsToUse ++;
     }
     return leveledUp;
   };
