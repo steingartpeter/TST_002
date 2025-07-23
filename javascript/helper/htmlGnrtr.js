@@ -64,6 +64,18 @@ export default class HTML_GNRTR {
     return plyrWnd;
   };
 
+  addLvlUpWndw = (p) => {
+    const lvlUpWndw = this.LMNTGenerator("div", ["lvlup-wndw"], "", "", "");
+    const msgDiv = this.LMNTGenerator("div", ["lvl-up-msg"], "", "", "");
+    msgDiv.textContent = "Gratuláluk! Elérted a " + p.lvl + " szintet!";
+
+    lvlUpWndw.appendChild(msgDiv);
+    return lvlUpWndw;
+  };
+
+  //+---------------------------------------------------------------------------+
+  //| #######     C O M M O N   E L E M E N T   G E N E R A T I O N S   ####### |
+  //+---------------------------------------------------------------------------+
   gnrtPrgrbar = (prmObj = {}) => {
     const prgrBar = this.LMNTGenerator("div", ["prgrpbar-ext"], "", "", "");
     const prgIntern = this.LMNTGenerator("div", ["prgrbar-intern"], "", "", "");

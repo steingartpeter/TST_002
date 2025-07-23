@@ -213,6 +213,31 @@ body main {
   background-color: #d69eec;
 }
 
+.lvlup-wndw{
+  position: absolute;
+  top:180px;
+  left:50vh;
+  width: 440px;
+  height: 475px;
+  max-width: 500px;
+  border:6px solid #888;
+  border-radius: 12px;
+  box-shadow: inset 6px 6px 12px #000;
+  background-image: url('/TST_002/assets/graph/UI/frame01.png');
+}
+.lvlup-wndw .lvl-up-msg{
+  margin: auto;
+  background-color: #333;
+  border:1px solid #cdcdcd;
+  border-radius: 4px;
+  width:65%;
+  height:45%;
+  padding:15px;
+  position: relative;
+  font-family: Poppins;
+  top:16%;
+}
+
 @keyframes growAndFadeIn {
   from {
     transform: scale(0.3);

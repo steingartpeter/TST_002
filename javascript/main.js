@@ -67,7 +67,8 @@ class mainApp {
       document.querySelector("#plyr-lvl").textContent = this.plyr.lvl;
       //document.querySelector('p#plyr-xp').textContent = this.plyr.xp;
       this.levelUpSound.play();
-      this.htmlGnrtr.addLvlUpWndw(this.plyr);
+      const lvlUpWndw = this.htmlGnrtr.addLvlUpWndw(this.plyr);
+      document.querySelector('body').appendChild(lvlUpWndw);
     }
   };
 }
