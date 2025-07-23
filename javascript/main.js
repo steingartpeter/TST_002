@@ -20,13 +20,13 @@ class mainApp {
   appInit() {
     console.log(`seconds-to-timeSt:${this.helper.secToTimeString(100)}`);
 
-    document.querySelector("#plyr-portrait").src = this.plyr.plyFaceImg;
-    document.querySelector("#plyr-nm").textContent = this.plyr.name;
-    document.querySelector(".close-btn").addEventListener("click", (evt) => {
-      evt.target.parentNode.parentNode.remove();
-    });
-    document.querySelector("#plyr-lvl").textContent = this.plyr.lvl;
-    document.querySelector("#plyr-xp").textContent = this.plyr.xp;
+    // document.querySelector("#plyr-portrait").src = this.plyr.plyFaceImg;
+    // document.querySelector("#plyr-nm").textContent = this.plyr.name;
+    // document.querySelector(".close-btn").addEventListener("click", (evt) => {
+    //   evt.target.parentNode.parentNode.remove();
+    // });
+    // document.querySelector("#plyr-lvl").textContent = this.plyr.lvl;
+    // document.querySelector("#plyr-xp").textContent = this.plyr.xp;
 
     let wdth = 0;
     const dur_in_sec = 35;

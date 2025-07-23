@@ -224,6 +224,7 @@ body main {
   border-radius: 12px;
   box-shadow: inset 6px 6px 12px #000;
   background-image: url('/TST_002/assets/graph/UI/frame01.png');
+  animation: growAndFadeIn 1.5s;
 }
 .lvlup-wndw .lvl-up-msg{
   margin: auto;
