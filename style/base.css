@@ -2,7 +2,13 @@
   font-family: Poppins;
   src: url("/TST_002/assets/fonts/Poppins/Poppins-Regular.ttf");
 }
-
+:root{
+  --common_color:#44B3E1;
+  --advanced_color:#D86DCD;
+  --exotic_color:#80F480;
+  --prototype_color:#FFC000;
+  
+}
 * {
   box-sizing: border-box;
   padding: 0;
